@@ -112,20 +112,64 @@
 
 //document.querySelectorAll
 
-const items = document.querySelectorAll('ul.collection li.collection-item');
+// const items = document.querySelectorAll('ul.collection li.collection-item');
+//
+// items.forEach(function(item, index){
+//   item.textContent = `${index}: Hello!`
+// });
+//
+// const liOdd =  document.querySelectorAll('li:nth-child(odd)');
+// const liEven =  document.querySelectorAll('li:nth-child(even)');
+//
+// liOdd.forEach(function(li, index){
+//   li.style.background = "#ccc"
+// })
+// for(let i = 0; i < liEven.length; i++){
+//   liEven[i].style.background = "#f4f4f4"
+// }
+//
+// console.log(items);
 
-items.forEach(function(item, index){
-  item.textContent = `${index}: Hello!`
-});
+let val;
 
-const liOdd =  document.querySelectorAll('li:nth-child(odd)');
-const liEven =  document.querySelectorAll('li:nth-child(even)');
+const list = document.querySelector('ul.collection');
+const listItem = document.querySelector('li.collection-item:first-child')
 
-liOdd.forEach(function(li, index){
-  li.style.background = "#ccc"
-})
-for(let i = 0; i < liEven.length; i++){
-  liEven[i].style.background = "#f4f4f4"
-}
+val = listItem;
+val = list;
 
-console.log(items);
+//Get child nodes
+val = list.childNodes;
+
+//Get children element nodes
+val = list.children;
+val = list.children[1];
+val = list.children[1].textContent = "hello!";
+
+val = list.children[3].children[0];
+
+//first child
+val = list.firstChild;
+val = list.firstElementChildren;
+
+//last child
+val = list.lastChild;
+val = list.lastElementChild;
+
+//count child elements
+val = list.childElementCount;
+
+//Get parent node
+val = listItem.parentNode;
+val = listItem.parentElement;
+val = listItem.parentElement.parentElement;
+
+//Get next sibiling
+val = listItem.nextSibling;
+val = listItem.nextElementSibling.nextElementSibling;
+
+//get prev sibling
+val = listItem.previousSibling;
+val = listItem.previousElementSibling;
+
+console.log(val);
