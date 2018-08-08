@@ -175,33 +175,88 @@
 // console.log(val);
 
 //Create element
-const li = document.createElement('li');
+// const li = document.createElement('li');
+//
+// //add class
+// li.className = "collection-item"
+//
+// //add id
+// li.id = "new-item";
+//
+// //add attribute
+// li.setAttribute("title", "New Item")
+//
+// //create text node and append
+// li.appendChild(document.createTextNode("Hello World"));
+//
+// //create new link element
+// const link = document.createElement('a')
+//
+// //add classes
+// link.className = 'delete-item secundary-content';
+//
+// //add icon html
+// link.innerHTML = '<i class="fa fa remove"></i>'
+//
+// //append link into li
+// li.appendChild(link)
+//
+// //append li as child to ul
+// document.querySelector('ul.collection').appendChild(li);
+//
+// console.log(li)
 
-//add class
-li.className = "collection-item"
+//Replace element
+
+//create element
+const newHeading = document.createElement('h2');
 
 //add id
-li.id = "new-item";
+newHeading.id = "task-title";
 
-//add attribute
-li.setAttribute("title", "New Item")
+//new text node
+newHeading.appendChild(document.createTextNode('Task List'));
 
-//create text node and append
-li.appendChild(document.createTextNode("Hello World"));
+//get the old heading
+const oldHeading = document.getElementById('task-title');
 
-//create new link element
-const link = document.createElement('a')
+//parent
+const cardAction = document.querySelector('.card-action');
 
-//add classes
-link.className = 'delete-item secundary-content';
+//replace
+cardAction.replaceChild(newHeading, oldHeading)
 
-//add icon html
-link.innerHTML = '<i class="fa fa remove"></i>'
+//rwemove element
+const lis = document.querySelectorAll('li');
+const list = document.querySelector('ul');
 
-//append link into li
-li.appendChild(link)
+//remove list item
+lis[0].remove();
 
-//append li as child to ul
-document.querySelector('ul.collection').appendChild(li);
+//remove child element
+list.removeChild(lis[3]);
 
-console.log(li)
+//classes and attr
+const firstLi =  document.querySelector("li:first-child");
+const link = firstLi.children[0];
+
+let val
+
+//classes
+
+val = link.className;
+val = link.classList;
+val = link.classList[0];
+link.classList.add('test');
+link.classList.remove('test');
+
+val = link
+
+//attributes
+val = link.getAttribute('href');
+val = link.setAttribute('href', 'http://google.com');
+link.setAttribute('title', "Google")
+val = link.hasAttribute('title')
+link.removeAttribute('title')
+
+console.log(val)
