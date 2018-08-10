@@ -208,55 +208,91 @@
 
 //Replace element
 
-//create element
-const newHeading = document.createElement('h2');
+// //create element
+// const newHeading = document.createElement('h2');
+//
+// //add id
+// newHeading.id = "task-title";
+//
+// //new text node
+// newHeading.appendChild(document.createTextNode('Task List'));
+//
+// //get the old heading
+// const oldHeading = document.getElementById('task-title');
+//
+// //parent
+// const cardAction = document.querySelector('.card-action');
+//
+// //replace
+// cardAction.replaceChild(newHeading, oldHeading)
+//
+// //rwemove element
+// const lis = document.querySelectorAll('li');
+// const list = document.querySelector('ul');
+//
+// //remove list item
+// lis[0].remove();
+//
+// //remove child element
+// list.removeChild(lis[3]);
+//
+// //classes and attr
+// const firstLi =  document.querySelector("li:first-child");
+// const link = firstLi.children[0];
+//
+// let val
+//
+// //classes
+//
+// val = link.className;
+// val = link.classList;
+// val = link.classList[0];
+// link.classList.add('test');
+// link.classList.remove('test');
+//
+// val = link
+//
+// //attributes
+// val = link.getAttribute('href');
+// val = link.setAttribute('href', 'http://google.com');
+// link.setAttribute('title', "Google")
+// val = link.hasAttribute('title')
+// link.removeAttribute('title')
+//
+// console.log(val)
 
-//add id
-newHeading.id = "task-title";
+//events
+//
+// document.querySelector('.clear-tasks').addEventListener('click',
+// function(e){
+//   console.log("hello")
+// })
 
-//new text node
-newHeading.appendChild(document.createTextNode('Task List'));
+document.querySelector('.clear-tasks').addEventListener('click', onClick)
 
-//get the old heading
-const oldHeading = document.getElementById('task-title');
+function onClick(e){
+  //console.log('clicked')
+  let val;
 
-//parent
-const cardAction = document.querySelector('.card-action');
+  val = e;
 
-//replace
-cardAction.replaceChild(newHeading, oldHeading)
+  //event target element
 
-//rwemove element
-const lis = document.querySelectorAll('li');
-const list = document.querySelector('ul');
+  val = e.target;
+  val = e.target.id;
+  val = e.target.classList;
 
-//remove list item
-lis[0].remove();
+    // e.target.innerText = "hello"
 
-//remove child element
-list.removeChild(lis[3]);
+  //event type
+  val = e.type;
 
-//classes and attr
-const firstLi =  document.querySelector("li:first-child");
-const link = firstLi.children[0];
+  //timestamp
+  val = e.timeStamp;
 
-let val
+  //coords event relative to the window
+  val = e.offsetY
+  val = e.offsetX
 
-//classes
-
-val = link.className;
-val = link.classList;
-val = link.classList[0];
-link.classList.add('test');
-link.classList.remove('test');
-
-val = link
-
-//attributes
-val = link.getAttribute('href');
-val = link.setAttribute('href', 'http://google.com');
-link.setAttribute('title', "Google")
-val = link.hasAttribute('title')
-link.removeAttribute('title')
-
-console.log(val)
+  console.log(val)
+}
