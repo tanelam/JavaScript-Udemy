@@ -268,31 +268,74 @@
 //   console.log("hello")
 // })
 
-document.querySelector('.clear-tasks').addEventListener('click', onClick)
+// document.querySelector('.clear-tasks').addEventListener('click', onClick)
+//
+// function onClick(e){
+//   //console.log('clicked')
+//   let val;
+//
+//   val = e;
+//
+//   //event target element
+//
+//   val = e.target;
+//   val = e.target.id;
+//   val = e.target.classList;
+//
+//     // e.target.innerText = "hello"
+//
+//   //event type
+//   val = e.type;
+//
+//   //timestamp
+//   val = e.timeStamp;
+//
+//   //coords event relative to the window
+//   val = e.offsetY
+//   val = e.offsetX
+//
+//   console.log(val)
+// }
+const clearBtn = document.querySelector('.clear-tasks')
+const card = document.querySelector('.card')
+const heading = document.querySelector('h5')
 
-function onClick(e){
-  //console.log('clicked')
-  let val;
+//click
+// clearBtn.addEventListener("click", runEvent)
 
-  val = e;
+//doubleclick
+// clearBtn.addEventListener("dblclick", runEvent)
 
-  //event target element
 
-  val = e.target;
-  val = e.target.id;
-  val = e.target.classList;
+//mousedown
+// clearBtn.addEventListener("mousedown", runEvent)
 
-    // e.target.innerText = "hello"
+//mouseup
+// clearBtn.addEventListener("mouseup", runEvent)
 
-  //event type
-  val = e.type;
+//mouse enter
+// card.addEventListener("mouseenter", runEvent)
 
-  //timestamp
-  val = e.timeStamp;
+//mouse leave
+// card.addEventListener("mouseleave", runEvent)
 
-  //coords event relative to the window
-  val = e.offsetY
-  val = e.offsetX
+//mouse over
+// card.addEventListener("mouseover", runEvent)
 
-  console.log(val)
+//mouse out
+// card.addEventListener("mouseout", runEvent)
+
+//mousemove
+//mouse enter
+card.addEventListener("mousemove", runEvent)
+
+
+
+//event handler
+function runEvent(e){
+  console.log(`EVENT TYPE: ${e.type}`);
+
+  heading.textContent = `mouseX: ${e.offsetX} mouseY: ${e.offsetY}`;
+
+  document.body.style.backgroundColor = `rgb(${e.offsetX}, ${e.offsetY}, 40)`
 }
