@@ -10,6 +10,8 @@ loadEventListeners();
 
 //Load all event listeners
 function loadEventListeners(){
+  //DOM load event
+  document.addEventListener("DOMContentLoaded", getTasks)
   //add task to event
   form.addEventListener("submit", addTask);
   //remove task event
@@ -46,8 +48,26 @@ function addTask(e){
   //append li to ul
   taskList.appendChild(li)
 
+  // store in LS
+  storeTaskInLocalStorage(taskInput.value);
+
   //clear input
   taskInput.value = "";
+}
+
+//store task
+function storeTaskInLocalStorage(task){
+  let tasks;
+
+  if(localStorage.getItem('tasks') === null){
+    tasks = [];
+  }else{
+    tasks = JSON.parse(localStorage.getItem('tasks'))
+  }
+
+  tasks.push(task)
+
+  localStorage.setItem('tasks', JSON.stringify(tasks))
 }
 
 //remove task
@@ -56,8 +76,30 @@ function removeTask(e){
     // console.log(e.target.parentElement.parentElement)
     if(confirm('Are you sure?')){
       e.target.parentElement.parentElement.remove()
+
+      // remove from ls
+      removeTaskFromLocalStorage(e.target.parentElement.parentElement)
     }
   }
+}
+
+//remove from local storage
+function removeTaskFromLocalStorage(taskItem){
+  let tasks;
+
+  if(localStorage.getItem('tasks') === null){
+    tasks = [];
+  }else{
+    tasks = JSON.parse(localStorage.getItem('tasks'))
+  }
+
+  tasks.forEach(function(task, index){
+    if(taskItem.textContent == task){
+      tasks.splice(index, 1)
+    }
+  })
+
+  localStorage.setItem('tasks', JSON.stringify(tasks))
 }
 
 //clear tasks
@@ -66,6 +108,14 @@ function clearTasks(){
   while(taskList.firstChild){
     taskList.removeChild(taskList.firstChild)
   }
+
+  //clear from LS
+  clearTasksFromLocalStorage();
+}
+
+//clear tasks from ls
+function clearTasksFromLocalStorage(){
+  localStorage.clear()
 }
 
 function filterTasks(e){
@@ -82,5 +132,36 @@ function filterTasks(e){
       }
     }
   );
+}
 
+//get tasks from ls
+function getTasks(){
+  let tasks;
+
+  if(localStorage.getItem('tasks') === null){
+    tasks = [];
+  }else{
+    tasks = JSON.parse(localStorage.getItem('tasks'))
+  }
+
+  tasks.forEach(function(task){
+    //create li element
+    const li = document.createElement('li');
+    //add a class
+    li.className = 'collection-item';
+    //create text node and append to li
+    li.appendChild(document.createTextNode(task))
+    //crreate new link createElement
+    const link = document.createElement('a');
+    //add class className
+    link.className = 'delete-item secundary-content';
+    //add icon html
+    link.innerHTML = '<i class="fa fa-remove"></i>';
+    //append the link to li
+    li.appendChild(link)
+
+    //append li to ul
+    taskList.appendChild(li)
+
+  })
 }
