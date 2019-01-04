@@ -31,13 +31,36 @@ function UI(){
           author = document.getElementById("author"),
           isbn = document.getElementById("isbn");
 
-    title.value = " ";
-    author.value = " ";
-    isbn.value = " ";
+    title.value = "";
+    author.value = "";
+    isbn.value = "";
+  }
+
+  UI.prototype.showAlert = function(message, className){
+    //create a div
+    const div = document.createElement("div");
+    //add class name
+    div.className = `alert ${className}`;
+    //create text node for message
+    div.appendChild(document.createTextNode(message));
+    //insert into the DOM. Get parent
+    const container = document.querySelector(".container")
+    const form = document.querySelector("#book-form")
+    //insert alert/div BEFORE the form
+    container.insertBefore(div, form)
+    //timeout after 3 sec
+    setTimeout(function(){document.querySelector(".alert").remove()}, 2000);
+  }
+
+  //delete book
+  UI.prototype.deleteBook = function(target){
+    if(target.className === "delete"){
+      target.parentElement.parentElement.remove();
+    }
   }
 }
 
-//Event Listeners
+//Event Listeners to add book
 
 document.getElementById("book-form").addEventListener("submit", function(e){
   e.preventDefault();
@@ -48,15 +71,28 @@ document.getElementById("book-form").addEventListener("submit", function(e){
         isbn = document.getElementById("isbn").value;
 
   //Instantiating a book
-  const book = new Book(title, author, isbn)
+  const book = new Book(title, author, isbn);
 
   //Instantiating a UI
   const ui = new UI();
 
-  //Add book to list
-  ui.addBookToList(book);
+  //Validate
+  if(title === "" || author === "" || isbn === ""){
+    //error alert
+    ui.showAlert("Please fill in all fields", "error")
+  }else{
+    //Add book to list
+    ui.addBookToList(book);
+    //show alert
+    ui.showAlert("Book Added!", "success")
+    //Clear form
+    ui.clearFields();
+  }
+})
 
-  //Clear form
-  ui.clearFields();
-
+//event listener for delete
+document.getElementById("book-list").addEventListener("click", function(e){
+  e.preventDefault();
+  const ui = new UI();
+  ui.deleteBook(e.target);
 })
