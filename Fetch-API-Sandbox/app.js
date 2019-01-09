@@ -5,25 +5,19 @@ document.getElementById("button3").addEventListener("click", getExternal);
 //Get Local Text File
 function getText(){
   fetch("test.txt")
-    .then(function(response){
-      return response.text();
-    })
-    .then(function(data){
+    .then(response => response.text())
+    .then(data => {
       console.log(data)
       document.getElementById("output").innerHTML = data;
     })
-    .catch(function(error ){
-      console.log(error)
-    })
+    .catch(error => console.log(error) )
 }
 
 //Get local JSON data
 function getJson(){
   fetch("posts.json")
-    .then(function(response){
-      return response.json();
-    })
-    .then(function(data){
+    .then(response => response.json())
+    .then(data => {
       console.log(data)
       let output = "";
 
@@ -32,18 +26,14 @@ function getJson(){
       });
       document.getElementById("output").innerHTML = output;
     })
-    .catch(function(error ){
-      console.log(error)
-    })
+    .catch(error => console.log(error));
 }
 
 //Get External data
 function getExternal(){
   fetch("https://api.github.com/users")
-    .then(function(response){
-      return response.json();
-    })
-    .then(function(data){
+    .then(response => response.json())
+    .then(data => {
       console.log(data)
       let output = "";
 
@@ -52,7 +42,5 @@ function getExternal(){
       });
       document.getElementById("output").innerHTML = output;
     })
-    .catch(function(error ){
-      console.log(error)
-    })
+    .catch(error => console.log(error))
 }
