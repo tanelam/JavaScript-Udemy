@@ -36,21 +36,6 @@ class EasyHTTP{
     })
   }
 
-  //Make HTTP POST request
-  post(url, data){
-    return new Promise((resolve, reject) => {
-      fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json"
-        },
-        body: JSON.stringify(data)
-      })
-      .then(resp => resp.json())
-      .then(data => resolve(data))
-      .catch(err => reject(err))
-    })
-  }
 
   //Make HTTP PUT request
   put(url, data){
